@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OTP Verification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+input {
+  width: 80%;
+  max-width: 300px;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 15px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background: #25D366;
+  color: white;
+}
+
+.error {
+  color: red;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🔐 OTP Verification</h2>
+<p>Please enter the OTP sent to you</p>
+
+<input type="number" id="otpInput" placeholder="Enter OTP">
+<br>
+<button onclick="verifyOTP()">Verify OTP</button>
+
+<div id="error" class="error"></div>
+
+<script>
+function verifyOTP() {
+  const enteredOTP = document.getElementById("otpInput").value;
+  const errorDiv = document.getElementById("error");
+
+  const baseOTP = 11111;
+
+  // Get current device minute
+  const now = new Date();
+  const currentMinute = now.getMinutes(); // 0–59
+
+  // Dynamic OTP calculation
+  const correctOTP = baseOTP * currentMinute;
+
+  if (enteredOTP == correctOTP) {
+    // OTP correct → go to selfie page
+    window.location.href = "selfie.html";
+  } else {
+    errorDiv.innerText = "❌ Wrong OTP. Please check time and try again.";
+  }
+}
+</script>
+
+</body>
+</html>
