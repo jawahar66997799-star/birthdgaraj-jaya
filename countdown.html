@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Countdown to Content</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+}
+#timer {
+  font-size: 60px;
+  margin: 30px 0;
+  color: #25D366;
+}
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  background: #25D366;
+  color: white;
+  margin-top: 20px;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<h2>⏳ Countdown to Access Content</h2>
+<p>Your content will open after the countdown ends.</p>
+
+<div id="timer">60</div>
+<button id="continueBtn" onclick="openContent()">Continue Now</button>
+
+<script>
+let timeLeft = 60; // seconds
+const timerEl = document.getElementById('timer');
+const btn = document.getElementById('continueBtn');
+
+const countdown = setInterval(() => {
+  timeLeft--;
+  timerEl.innerText = timeLeft;
+
+  if (timeLeft <= 0) {
+    clearInterval(countdown);
+    openContent();
+  }
+}, 1000);
+
+function openContent() {
+  // Open your PDF / Image / Content page
+  window.location.href = "content.html";
+}
+</script>
+
+</body>
+</html>
